@@ -7,7 +7,28 @@ import {
 } from "react-simple-captcha";
 
 const Login = () => {
-  
+  const captchaRef = useRef(null);
+  const [disabled, setDisabled] = useState(true);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+
+    if (validateCaptcha(user_captcha_value)) {
+      //   alert("Captcha Matched");
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
   return (
     <div className="hero min-h-screen bg-slate-300">
       <div className="hero-content flex-col md:flex-row-reverse">
