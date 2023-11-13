@@ -1,14 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loginImage from "../../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   validateCaptcha,
   LoadCanvasTemplate,
 } from "react-simple-captcha";
+import { AuthContext } from "../../provider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
+  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -17,10 +26,29 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    loginUser(email, password).then(() => {
+      Swal.fire({
+        title: "User Login successfully",
+        showClass: {
+          popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `,
+        },
+        hideClass: {
+          popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `,
+        },
+      });
+      navigate(from, { replace: true });
+    });
   };
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
 
     if (validateCaptcha(user_captcha_value)) {
       //   alert("Captcha Matched");
@@ -31,6 +59,9 @@ const Login = () => {
   };
   return (
     <div className="hero min-h-screen bg-slate-300">
+      <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
       <div className="hero-content flex-col md:flex-row-reverse">
         <div className="text-center md:w-1/2 lg:text-left text-white">
           <img src={loginImage} alt="" />
@@ -72,17 +103,12 @@ const Login = () => {
               </label>
               <input
                 type="text"
-                ref={captchaRef}
+                onBlur={handleValidateCaptcha}
                 placeholder="Type the captcha above"
                 name="captcha"
                 className="input input-bordered"
                 required
               />
-              <button
-                onClick={handleValidateCaptcha}
-                className="btn btn-outline btn-xs mt-2">
-                Validate
-              </button>
             </div>
 
             <div className="form-control mt-6">
@@ -94,6 +120,12 @@ const Login = () => {
               />
             </div>
           </form>
+          <p className="py-5 flex justify-center  items-center">
+            New Here?
+            <Link className="text-blue-600 font-semibold" to="/signup">
+              Create a account
+            </Link>
+          </p>
         </div>
       </div>
     </div>
