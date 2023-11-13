@@ -1,5 +1,19 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+import Loading from "../Loading/Loading";
+
 const Secret = () => {
-  return <div> <h1>This is Secret</h1></div>;
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  return (
+    <div>
+     
+      <h1>This is Secret</h1>
+    </div>
+  );
 };
 
 export default Secret;

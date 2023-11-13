@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { BsCart4 } from "react-icons/Bs";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -23,6 +24,14 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="/secret">Secret</Link>
+      </li>
+      <li>
+        <Link to="/">
+          <button className=" btn">
+            <BsCart4 className="mr-2 "></BsCart4>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
       </li>
     </>
   );
@@ -62,14 +71,21 @@ const Navbar = () => {
             <h className="flex justify-center items-center">
               {user?.displayName}
             </h>
+            <div className="w-10 rounded-full mx-2">
+              <img
+                className={`rounded-full w-12 `}
+                src={user?.photoURL}
+                alt=""
+              />
+            </div>
             <button onClick={handleLogOut} className="btn btn-ghost">
               Log Out
-            </button> 
+            </button>
           </>
         ) : (
-          <li>
+          <button className="btn ">
             <Link to="/login">Login</Link>
-          </li>
+          </button>
         )}
       </div>
     </div>
