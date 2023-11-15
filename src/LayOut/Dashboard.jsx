@@ -1,13 +1,13 @@
 import { BsCalendar, BsCart4, BsHouse, BsShopWindow } from "react-icons/Bs";
 import { MdMenu, MdReviews, MdShoppingBag } from "react-icons/Md";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
     <div className="grid grid-cols-12 h-full">
       {/* dashboard side bar */}
-      {/* <div className="drawer">
-      
 
       {/* my creation */}
       <div className="col-span-3 min-h-screen bg-orange-300 ">
@@ -24,7 +24,7 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to="/dashboard/cart">
-              <BsCart4></BsCart4> My Cart
+              <BsCart4></BsCart4> My Cart ({cart.length})
             </NavLink>
           </li>
 
