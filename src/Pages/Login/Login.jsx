@@ -9,6 +9,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import Google from "../Sheard/SocalLogin/Google";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -51,7 +52,6 @@ const Login = () => {
     const user_captcha_value = e.target.value;
 
     if (validateCaptcha(user_captcha_value)) {
-   
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -120,6 +120,8 @@ const Login = () => {
               />
             </div>
           </form>
+          <Google></Google>
+
           <p className="py-5 flex justify-center  items-center">
             New Here?
             <Link className="text-blue-600 font-semibold" to="/signup">

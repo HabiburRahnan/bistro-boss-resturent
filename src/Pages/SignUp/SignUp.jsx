@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Google from "../Sheard/SocalLogin/Google";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -153,6 +154,7 @@ const SignUp = () => {
               />
             </div>
           </form>
+          <Google></Google>
           <p className="py-5 flex justify-center  items-center">
             Already have an Account?
             <Link className="text-blue-600 font-semibold" to="/login">

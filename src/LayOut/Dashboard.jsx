@@ -1,10 +1,15 @@
 import { BsCalendar, BsCart4, BsHouse, BsShopWindow } from "react-icons/Bs";
-import { MdMenu, MdReviews, MdShoppingBag } from "react-icons/Md";
+import { MdEmail, MdMenu, MdReviews, MdShoppingBag } from "react-icons/Md";
+import { FaUtensils, FaList,  FaUsers, FaBook } from "react-icons/Fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
+
+  //  TODO: get admin value from database
+
+  const isAdmin = true;
   return (
     <div className="grid grid-cols-12 h-full">
       {/* dashboard side bar */}
@@ -12,32 +17,67 @@ const Dashboard = () => {
       {/* my creation */}
       <div className="col-span-3 min-h-screen bg-orange-300 ">
         <ul className="menu p-4 dashboardItem">
-          <li>
-            <NavLink to="/dashboard/userHome">
-              <BsHouse></BsHouse> User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/reservation">
-              <BsCalendar></BsCalendar> Reservation
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/cart">
-              <BsCart4></BsCart4> My Cart ({cart.length})
-            </NavLink>
-          </li>
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/adminHome">
+                  <BsHouse></BsHouse> Admin Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/addItems">
+                  <FaUtensils></FaUtensils> Add Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageItems">
+                  <FaList></FaList> Manage Items
+                </NavLink>
+              </li>
 
-          <li>
-            <NavLink to="/dashboard/reviews">
-              <MdReviews></MdReviews>Add A Reviews
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/myBookings">
-              <BsShopWindow></BsShopWindow>My Bookings
-            </NavLink>
-          </li>
+              <li>
+                <NavLink to="/dashboard/manageBookings">
+                  <FaBook></FaBook>Manage Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/allUsers">
+                  <FaUsers></FaUsers>All Users
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/userHome">
+                  <BsHouse></BsHouse> User Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/reservation">
+                  <BsCalendar></BsCalendar> Reservation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/cart">
+                  <BsCart4></BsCart4> My Cart ({cart.length})
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard/reviews">
+                  <MdReviews></MdReviews>Add A Reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/myBookings">
+                  <BsShopWindow></BsShopWindow>My Bookings
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {/* shard links  */}
           <div className="divider"></div>
           <li>
             <Link to="/">
@@ -52,6 +92,11 @@ const Dashboard = () => {
           <li>
             <NavLink to="/order/salad">
               <MdShoppingBag></MdShoppingBag> Our Food
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/order/Contact">
+              <MdEmail></MdEmail> Contact
             </NavLink>
           </li>
         </ul>
