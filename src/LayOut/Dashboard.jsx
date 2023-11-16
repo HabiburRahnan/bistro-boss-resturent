@@ -1,15 +1,15 @@
 import { BsCalendar, BsCart4, BsHouse, BsShopWindow } from "react-icons/Bs";
 import { MdEmail, MdMenu, MdReviews, MdShoppingBag } from "react-icons/Md";
-import { FaUtensils, FaList,  FaUsers, FaBook } from "react-icons/Fa";
+import { FaUtensils, FaList, FaUsers, FaBook } from "react-icons/Fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
 
-  //  TODO: get admin value from database
 
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="grid grid-cols-12 h-full">
       {/* dashboard side bar */}

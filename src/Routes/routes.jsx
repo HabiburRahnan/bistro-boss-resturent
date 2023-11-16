@@ -5,11 +5,11 @@ import Menu from "../Pages/Menu/Menu/Menu";
 import OrderFood from "../Pages/Order/OrderFood/OrderFood";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
-import PrivetRoute from "./privetRoute";
 import Secret from "../Pages/Sheard/Secret/Secrect";
 import Dashboard from "../LayOut/Dashboard";
 import Cart from "../Pages/DashBoard/Cart/Cart";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
   {
