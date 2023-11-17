@@ -8,7 +8,6 @@ import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
   const [cart] = useCart();
 
-
   const [isAdmin] = useAdmin();
   return (
     <div className="grid grid-cols-12 h-full">
@@ -32,6 +31,11 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/manageItems">
                   <FaList></FaList> Manage Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/updateItem/:id">
+                  <FaList></FaList> Update Items
                 </NavLink>
               </li>
 

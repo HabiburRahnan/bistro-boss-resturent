@@ -13,6 +13,7 @@ import PrivetRoute from "./PrivetRoute";
 import AddItems from "../Pages/DashBoard/AddItems/AddItems";
 import AdminRoute from "./adminRoute";
 import ManageItem from "../Pages/DashBoard/ManegeItem/ManageItem";
+import UpdateItem from "../Pages/DashBoard/UpdateItem/UpdateItem";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,16 @@ export const router = createBrowserRouter([
             <ManageItem></ManageItem>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/updateItem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem></UpdateItem>
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
     ],
   },
