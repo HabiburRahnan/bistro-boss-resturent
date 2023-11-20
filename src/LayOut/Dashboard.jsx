@@ -1,5 +1,11 @@
 import { BsCalendar, BsCart4, BsHouse, BsShopWindow } from "react-icons/Bs";
-import { MdEmail, MdMenu, MdReviews, MdShoppingBag } from "react-icons/Md";
+import {
+  MdEmail,
+  MdMenu,
+  MdPayments,
+  MdReviews,
+  MdShoppingBag,
+} from "react-icons/Md";
 import { FaUtensils, FaList, FaUsers, FaBook } from "react-icons/Fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useCart from "../hooks/useCart";
@@ -69,13 +75,18 @@ const Dashboard = () => {
               </li>
 
               <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <MdPayments></MdPayments>Payment History
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/reviews">
                   <MdReviews></MdReviews>Add A Reviews
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myBookings">
-                  <BsShopWindow></BsShopWindow>My Bookings
+                <NavLink to="/dashboard/history">
+                  <BsShopWindow></BsShopWindow>not History
                 </NavLink>
               </li>
             </>

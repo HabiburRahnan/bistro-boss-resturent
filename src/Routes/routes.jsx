@@ -15,6 +15,9 @@ import AdminRoute from "./adminRoute";
 import ManageItem from "../Pages/DashBoard/ManegeItem/ManageItem";
 import UpdateItem from "../Pages/DashBoard/UpdateItem/UpdateItem";
 import Payment from "../Pages/DashBoard/Payment/Payment";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
+import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome";
+import UserHome from "../Pages/DashBoard/UserHome/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -61,15 +64,52 @@ export const router = createBrowserRouter([
     children: [
       // normal users routes
       {
-        path: "/dashboard/cart",
-        element: <Cart></Cart>,
+        path: "/dashboard/userHome",
+        element: (
+          <PrivetRoute>
+            <UserHome></UserHome>
+          </PrivetRoute>
+        ),
       },
+      {
+        path: "/dashboard/cart",
+        element: (
+          <PrivetRoute>
+            <Cart></Cart>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/dashboard/payment",
+        element: (
+          <PrivetRoute>
+            <Payment></Payment>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: (
+          <PrivetRoute>
+            <PaymentHistory></PaymentHistory>
+          </PrivetRoute>
+        ),
+      },
+
       // admin only routes
       {
         path: "/dashboard/allUsers",
         element: (
           <AdminRoute>
             <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
           </AdminRoute>
         ),
       },
@@ -89,14 +129,7 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      {
-        path: "/dashboard/payment",
-        element: (
-          <PrivetRoute>
-            <Payment></Payment>
-          </PrivetRoute>
-        ),
-      },
+
       {
         path: "/dashboard/updateItem/:id",
         element: (
